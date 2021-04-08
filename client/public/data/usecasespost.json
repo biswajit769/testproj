@@ -1,0 +1,57 @@
+[{
+  "_id": "pj01_UC01",
+  "name": "Predict system downtimes",
+  "description": "Predict downtime of different system componenets in application landscape",
+  "type": "Regression",
+  "status": "Data Exploration",
+  "experiments": [
+    {
+      "id": "123",
+      "name": "INS_Resolver Time",
+      "dataset": "CMB_Echo 2",
+      "description": "description will come here",
+      "target": "Resolver Time",
+      "runtime": "00:30:21",
+      "status": "model building completed"
+    },
+    {
+      "id": "1234",
+      "name": "INS_Resolver Time",
+      "dataset": "CMB_Echo 3",
+      "description": "description will come here",
+      "target": "Resolver Time",
+      "runtime": "00:30:21",
+      "status": "model building completed"
+    }
+  ],
+  "lastedit": "2020-07-09T17:21:20.665Z",
+  "createdon": "2020-07-09T17:21:20.665Z"
+},{
+  "_id": "pj01_UC02",
+  "name": "Predict system downtimes new",
+  "description": "Predict downtime of different system componenets in application landscape",
+  "type": "Classification",
+  "status": "Data Injection",
+  "experiments": [
+    {
+      "id": "123",
+      "name": "INS_Resolver Time",
+      "dataset": "CMB_Echo 2",
+      "description": "description will come here",
+      "target": "Resolver Time",
+      "runtime": "00:30:21",
+      "status": "model building completed"
+    },
+    {
+      "id": "1234",
+      "name": "INS_Resolver Time",
+      "dataset": "CMB_Echo 3",
+      "description": "description will come here",
+      "target": "Resolver Time",
+      "runtime": "00:30:21",
+      "status": "model building completed"
+    }
+  ],
+  "lastedit": "2020-07-09T17:21:20.665Z",
+  "createdon": "2020-07-09T17:21:20.665Z"
+}]
