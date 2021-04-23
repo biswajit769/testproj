@@ -1,8 +1,9 @@
 import React from "react";
 import { ChakraProvider, Box, Icon, Text, Button } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
-const SaveModel = ({ closeModal,data }) => {
+const SaveModel = ({ closeModal, data }) => {
   const closeModalWindow = () => {
     closeModal(true);
   };
@@ -41,31 +42,32 @@ const SaveModel = ({ closeModal,data }) => {
         alignItems="center"
         mt="20px"
       >
-        <Button
-          variant="solid"
-          size="lg"
-          backgroundColor="red.500"
-          color="whiteAlpha.900"
-          borderRadius={0}
-          display="block"
-          onClick={closeModalWindow}
-          fontWeight="normal"
-        >
-          GO TO LANDING PAGE
-        </Button>
+        <Link to="/modelprediction">
+          <Button
+            variant="solid"
+            size="lg"
+            backgroundColor="red.500"
+            color="whiteAlpha.900"
+            borderRadius={0}
+            display="block"
+            onClick={closeModalWindow}
+            fontWeight="normal"
+          >
+            GO TO LANDING PAGE
+          </Button>
+        </Link>
       </Box>
       <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      mt={5}
-    >
-      <Text color="blue.500" fontSize="lg">
-        You will be redirecting to landing page in <b>30 sec</b>
-      </Text>
-    </Box>
-
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        mt={5}
+      >
+        <Text color="blue.500" fontSize="lg">
+          You will be redirecting to landing page in <b>30 sec</b>
+        </Text>
+      </Box>
     </Box>
   );
 };

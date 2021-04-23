@@ -10,6 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
+import { Link, withRouter } from 'react-router-dom';
+
 const ProjectSelector = () => {
   const [selectedProject, setSelectedProject] = useState("");
   const setProjectType = (selectedProject) => {
@@ -59,6 +61,7 @@ const ProjectSelector = () => {
             <option>Prj01_UC01</option>
           </Select>
         </Flex>
+        <Link to='/usecases'>
         <Button
           variant="solid"
           size="md"
@@ -71,6 +74,7 @@ const ProjectSelector = () => {
         >
           CONTINUE
         </Button>
+        </Link>
       </Box>
     </ChakraProvider>
   );

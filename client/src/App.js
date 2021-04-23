@@ -24,6 +24,7 @@ import DataInvestigationgrph from './Pages/DataInvestigationgrph';
 import DataProcessing from './Pages/DataProcessing';
 import DataProcessingCleanService from './Pages/DataProcessingCleanService';
 import ModelBuilding from './Pages/ModelBuilding';
+import ModelPrediction from './Pages/ModelPrediction';
 
 const theme = {
   ...defaultTheme,
@@ -60,6 +61,7 @@ function App() {
             <Route exact path='/dataexploregph' component={DataInvestigationgrph} />
             <Route exact path='/dataprocessing' component={DataProcessing} />
             <Route exact path='/modelbuilding' component={ModelBuilding} />
+            <Route exact path='/modelprediction' component={ModelPrediction} />
             <Route exact path='/datacleanservice' component={DataProcessingCleanService} />
             <Route exact path='/authors/add' component={AuthorEditOrAddPage} />
             <Route
