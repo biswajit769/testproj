@@ -2,7 +2,7 @@ import React from "react";
 import { ChakraProvider, Box, Icon, Text, Button } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 
-const SaveExperiment = ({ closeModal,data }) => {
+const SaveModel = ({ closeModal,data }) => {
   const closeModalWindow = () => {
     closeModal(true);
   };
@@ -13,7 +13,7 @@ const SaveExperiment = ({ closeModal,data }) => {
       </Box>
       <Box>
         <Text textAlign="center" fontSize="2xl" color="teal.600" mb="20px">
-          Use case successfully created
+          Model building is in Progress
         </Text>
       </Box>
       <Box display="flex" justifyContent="center" alignItems="center">
@@ -27,10 +27,10 @@ const SaveExperiment = ({ closeModal,data }) => {
           alignItems="center"
         >
           <Text textAlign="center" fontSize="xl" mb="5px">
-            Use case ID
+            Please wait for
           </Text>
           <Text textAlign="center" fontSize="2xl">
-            {data.usecasename}
+            200 minutes
           </Text>
         </Box>
       </Box>
@@ -49,12 +49,25 @@ const SaveExperiment = ({ closeModal,data }) => {
           borderRadius={0}
           display="block"
           onClick={closeModalWindow}
+          fontWeight="normal"
         >
-          OK
+          GO TO LANDING PAGE
         </Button>
       </Box>
+      <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      mt={5}
+    >
+      <Text color="blue.500" fontSize="lg">
+        You will be redirecting to landing page in <b>30 sec</b>
+      </Text>
+    </Box>
+
     </Box>
   );
 };
 
-export default SaveExperiment;
+export default SaveModel;

@@ -99,28 +99,16 @@ const UseCases = ({ isAuth }) => {
   }
 
   const handleSave = async (e) => {
-    console.log("formData====", formData);
-    /*e.preventDefault();
-    setLoading(true);
-    /*console.log("formData====", formData);
-    //await axiosCall.POST("./data/usecasespost.json", formData);
-    let fetchedUseCases = await axiosCall.GET("./data/usecasespost.json", formData);
-    setUsecases(fetchedUseCases.data);
-    /*if (mode === 'add') {
-      await axiosCall.POST('/authors', formData);
-      
-    } else if (mode === 'edit') {
-      await axiosCall.PUT(`/authors/${authorId}`, formData);
-    }
-    setLoading(false);
-    //props.history.goBack();*/
     e.preventDefault();
     setLoading(true);
     await axios
       .post("/usecases",formData)
       .then(function (fetchedUseCases) {
+        console.log("fetchedUseCases========",fetchedUseCases);
         setUsecases(fetchedUseCases.data);
         setLoading(false);
+        onToggle();
+        modalRef.current.saveSuccess();
       })
       .catch(function (error) {
         console.log(error);
@@ -420,9 +408,9 @@ const UseCases = ({ isAuth }) => {
                       >
                         SAVE
                       </Button>
-                      {/*<CustomModal
+                      <CustomModal
                         showModalButtonText="SAVE"
-                        modalBody={<SaveData/>}
+                        modalBody={<SaveData data={formData} closeModal={footerClose}/>}
                         size="xl"
                         buttonHandler="red.500"
                         colorScheme="white"
@@ -430,7 +418,9 @@ const UseCases = ({ isAuth }) => {
                         borderRadius={0}
                         border="0px"
                         modalFooter=""
-                      />*/}
+                        showButton="false"
+                        ref={modalRef}
+                      />
                     </FormLabel>
                   </Box>
                   <Box width="4%">

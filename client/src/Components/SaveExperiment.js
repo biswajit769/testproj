@@ -2,7 +2,7 @@ import React from "react";
 import { ChakraProvider, Box, Icon, Text, Button } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 
-const SaveExperiment = ({ closeModal,data }) => {
+const SaveData = ({ closeModal,data }) => {
   const closeModalWindow = () => {
     closeModal(true);
   };
@@ -13,7 +13,7 @@ const SaveExperiment = ({ closeModal,data }) => {
       </Box>
       <Box>
         <Text textAlign="center" fontSize="2xl" color="teal.600" mb="20px">
-          Use case successfully created
+          Experiment Created Successfully
         </Text>
       </Box>
       <Box display="flex" justifyContent="center" alignItems="center">
@@ -27,10 +27,10 @@ const SaveExperiment = ({ closeModal,data }) => {
           alignItems="center"
         >
           <Text textAlign="center" fontSize="xl" mb="5px">
-            Use case ID
+            Experiment ID
           </Text>
           <Text textAlign="center" fontSize="2xl">
-            {data.usecasename}
+            {data.dataset}
           </Text>
         </Box>
       </Box>
@@ -50,11 +50,23 @@ const SaveExperiment = ({ closeModal,data }) => {
           display="block"
           onClick={closeModalWindow}
         >
-          OK
+          CONITUE WITH DATA EXPLORATION
         </Button>
       </Box>
+      <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      mt={5}
+    >
+      <Text color="blue.500" fontSize="lg">
+        No I will do it later
+      </Text>
+    </Box>
+
     </Box>
   );
 };
 
-export default SaveExperiment;
+export default SaveData;

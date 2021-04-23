@@ -19,6 +19,11 @@ import BookEditOrAddPage from './Pages/BookEditOrAdd';
 import LoginPage from './Pages/Auth/LoginPage';
 import RegisterPage from './Pages/Auth/RegisterPage';
 import FourOhFour from './Pages/404Page';
+import DataInvestigation from './Pages/DataInvestigation';
+import DataInvestigationgrph from './Pages/DataInvestigationgrph';
+import DataProcessing from './Pages/DataProcessing';
+import DataProcessingCleanService from './Pages/DataProcessingCleanService';
+import ModelBuilding from './Pages/ModelBuilding';
 
 const theme = {
   ...defaultTheme,
@@ -51,6 +56,11 @@ function App() {
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/authors' component={AuthorsPage} />
             <Route exact path='/usecases' component={UseCases} />
+            <Route exact path='/dataexplore' component={DataInvestigation} />
+            <Route exact path='/dataexploregph' component={DataInvestigationgrph} />
+            <Route exact path='/dataprocessing' component={DataProcessing} />
+            <Route exact path='/modelbuilding' component={ModelBuilding} />
+            <Route exact path='/datacleanservice' component={DataProcessingCleanService} />
             <Route exact path='/authors/add' component={AuthorEditOrAddPage} />
             <Route
               exact

@@ -22,10 +22,16 @@ const CustomModal = forwardRef((props, ref) => {
     closeModal() {
       onClose();
     },
+    saveSuccess(){
+      console.log("save button clicked",isOpen);
+      //isOpen = true;
+      onOpen();
+    }
   }));
   return (
     <div>
-      <Button
+      {props.showButton !== 'false'?(
+        <Button
         variant="solid"
         size="md"
         borderRadius={0}
@@ -38,6 +44,8 @@ const CustomModal = forwardRef((props, ref) => {
       >
         {props.showModalButtonText}
       </Button>
+      ):""}
+      
       <Modal isOpen={isOpen} onClose={onClose} size={props.size}>
         <ModalOverlay />
         <ModalContent>
