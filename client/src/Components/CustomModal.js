@@ -17,7 +17,6 @@ const CustomModal = forwardRef((props, ref) => {
   const buttonColor = props.buttonHandler?props.buttonHandler:"";
   const color = props.colorScheme?props.colorScheme:"linkedin.500";
   const border = props.border?props.border:"1px";
-  console.log("color====",color);
   useImperativeHandle(ref, () => ({
     closeModal() {
       onClose();

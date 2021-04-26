@@ -83,7 +83,6 @@ const DataInvestigation = ({ isAuth }) => {
     await axios
       .get("/getdatainformation")
       .then(function (fetchedDataInformation) {
-        console.log("get data information===",fetchedDataInformation);
         setDatainformation(fetchedDataInformation.data);
         setLoading(false);
       })

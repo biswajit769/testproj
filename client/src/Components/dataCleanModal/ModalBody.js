@@ -32,8 +32,8 @@ import {
   FaTrashAlt,
 } from "react-icons/fa";
 
-const ModalBody = ({ dataSet , onChange, textClean}) => {
-  console.log("textClean====",textClean);
+const ModalBody = ({ dataSet , onChange, textClean ,textTransformation, startPoint}) => {
+  console.log("text clean=====",textClean, "and textTransformation====",textTransformation);
   const [loading, setLoading] = useState(true);
   const [datasetSelection, setDatasetSelection] = useState("");
   const [datasets, setDatasets] = useState([]);
@@ -53,6 +53,16 @@ const ModalBody = ({ dataSet , onChange, textClean}) => {
         <Td textTransform="uppercase">{dataset.datatype}</Td>
         <Td><Checkbox colorScheme="green"></Checkbox></Td>
         <Td><Checkbox colorScheme="green"></Checkbox></Td>
+        <Td><Checkbox colorScheme="green"></Checkbox></Td>
+        <Td><Checkbox colorScheme="green"></Checkbox></Td>
+        <Td><Checkbox colorScheme="green"></Checkbox></Td>
+        </Tr>
+        ));
+    } else if(textTransformation){
+      rows = dataSet.map((dataset, i) => (
+        <Tr key={dataset.id}>
+        <Td>{dataset.columnname}</Td>
+        <Td textTransform="uppercase">{dataset.datatype}</Td>
         <Td><Checkbox colorScheme="green"></Checkbox></Td>
         <Td><Checkbox colorScheme="green"></Checkbox></Td>
         <Td><Checkbox colorScheme="green"></Checkbox></Td>
@@ -97,6 +107,16 @@ const ModalBody = ({ dataSet , onChange, textClean}) => {
           <Th textTransform="capitalize">Special Character</Th>
         </Tr>
       )
+    }else if(textTransformation){
+      return (
+        <Tr>
+                  <Th textTransform="capitalize">Column Name</Th>
+                  <Th textTransform="capitalize">Data Type</Th>
+                  <Th textTransform="capitalize">Log</Th>
+                  <Th textTransform="capitalize">Sqrt</Th>
+                  <Th textTransform="capitalize">Exp</Th>
+                </Tr>
+              )
     }else{
     return (
       <Tr>

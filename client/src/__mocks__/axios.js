@@ -198,7 +198,8 @@ let intitailExperiments = [
     "description": "description will come here",
     "target": "Resolver Time",
     "runtime": "00:30:21",
-    "status": "model building completed"
+    "status": "data ingestion completed",
+    "cstat":"da"
   },
   {
     "id": "1234",
@@ -207,7 +208,8 @@ let intitailExperiments = [
     "description": "description will come here",
     "target": "Resolver Time",
     "runtime": "00:30:21",
-    "status": "model building completed"
+    "status": "model building completed",
+    "cstat":"mb"
   }
 ];
 

@@ -60,16 +60,44 @@ const DataProcessingCleanService = ({ isAuth }) => {
   const [datainformation, setDatainformation] = useState([]);
   const modalRef = useRef(null);
   const [textCleaning, setTextCleaning] = useState(false);
+  const [dataCleaning, setDataCleaning] = useState(false);
   const [finalCleanupDone, setFinalCleanupDone] = useState(false);
+  const [datatTextClean, setDatatTextClean] = useState(false);
+  const [textTransformation, setTextTransformation] = useState(false);
+  const [cleanAllServices, setCleanAllServices] = useState(false);
+  const [onlyTextClean, setOnlyTextClean] = useState(false);
+  const [highlightText, setHighlightText] = useState(false);
+  const [onlyTextTextTransform, setOnlyTextTextTransform] = useState(false);
+  const [onlyTextTransform, setOnlyTextTransform] = useState(false);
+  const [highlightTransform, setHighlightTransform] = useState(false);
 
   // functions
   const searchAuthors = (e) => {
     setSearchText(e.target.value);
   };
 
-  const displaySelection = () => {
+  const onlyTextTransformClean = (status) => {
+    console.log("clean text transform only");
+    setHighlightTransform(status);
+    modalRef.current.closeModal();
+  }
+
+  const displaySelection = (servicetype) => {
     //setShowSelect(!showSelect);
-    console.log("my selection");
+    console.log("my selection",servicetype);
+    if(servicetype==='textclean'){
+      setTextCleaning(true);
+      setOnlyTextClean(true);
+      setOnlyTextTransform(false);
+      setTextTransformation(false);
+    }else if(servicetype==='dataclean'){
+      setOnlyTextClean(false);
+      setOnlyTextTransform(false);
+    }else{
+      setOnlyTextClean(false);
+      setOnlyTextTransform(true);
+      setTextTransformation(true);
+    }
     modalRef.current.saveSuccess();
   }
 
@@ -78,13 +106,47 @@ const DataProcessingCleanService = ({ isAuth }) => {
     modalRef.current.closeModal();
   }
 
+  const dataCleanComplete = (status) => {
+    console.log("data clean complete",status);
+    setDataCleaning(true);
+    modalRef.current.closeModal();
+  }
+
+  const dataTextCleanUp = (status) => {
+    console.log("data and text cleanup",status);
+    setDatatTextClean(status)
+    modalRef.current.closeModal();
+  }
+
+  const cleanTextTextTransform = (status) => {
+    console.log("only text and text transform");
+    setOnlyTextTextTransform(status);
+    modalRef.current.closeModal();
+  }
+
+  const onlyCleanText = (status) => {
+    console.log("only clean text");
+    setHighlightText(status);
+    modalRef.current.closeModal();
+  }
+
+  const openTextTransform = (status) => {
+    console.log("open text transform window",status);
+    setTextTransformation(status);
+    setTextCleaning(false);
+  }
+
+  const cleanAllThree = (status) => {
+    console.log("clean all services=====",status);
+    setCleanAllServices(status);
+    modalRef.current.closeModal();
+  }
+
   const footerClose = async (status) => {
     setTextCleaning(true);
-    console.log("text clean======",textCleaning);
     await axios
       .get("/textcleanservice")
       .then(function (fetchedDataInformation) {
-        console.log("get data information===", fetchedDataInformation);
         setDatainformation(fetchedDataInformation.data);
         setLoading(false);
       })
@@ -132,7 +194,6 @@ const DataProcessingCleanService = ({ isAuth }) => {
     await axios
       .get("/datacleanservice")
       .then(function (fetchedDataInformation) {
-        console.log("get data information===", fetchedDataInformation);
         setDatainformation(fetchedDataInformation.data);
         setLoading(false);
       })
@@ -218,7 +279,9 @@ const DataProcessingCleanService = ({ isAuth }) => {
           <Box>
       <Flex justifyContent="space-between" mt={5}>
         <Box display="flex">
-          <ChevronLeftIcon boxSize={14} color="blue.500" mt={2} />
+          <Link to='/dataprocessing'>
+            <ChevronLeftIcon boxSize={14} color="blue.500" mt={2} />
+          </Link>
           <Box ml={5}>
             <Text fontSize="3xl">Cleaning Service for dataset CMB_Ech02</Text>
             <Text fontSize="lg">
@@ -227,13 +290,15 @@ const DataProcessingCleanService = ({ isAuth }) => {
           </Box>
         </Box>
         <Box mr={5}>
-          <CloseIcon boxSize={5} color="blackAlpha.500" />
+          <Link to='/dataprocessing'>
+            <CloseIcon boxSize={5} color="blackAlpha.500" />
+          </Link>
         </Box>
       </Flex>
       <Flex justifyContent="space-between" alignItems="space-between" mt={20} ml={20} mr={5}>
-        <Box backgroundColor={finalCleanupDone ? 'green.50' : "white"} mr={7} border="1px" borderColor="gray.500" borderRadius={5} p="27px" width="33.33%" boxShadow="xl">
+        <Box backgroundColor={dataCleaning || finalCleanupDone || datatTextClean || cleanAllServices ? 'green.50' : "white"} mr={7} border="1px" borderColor="gray.500" borderRadius={5} p="27px" width="33.33%" boxShadow="xl">
           <Box display="flex" justifyContent="flex-end">
-            <CheckCircleIcon color="green.500" boxSize={6} display={finalCleanupDone ? 'block' : "none"}/>
+            <CheckCircleIcon color="green.500" boxSize={6} display={dataCleaning || finalCleanupDone || datatTextClean || cleanAllServices ? 'block' : "none"}/>
           </Box>
           <Box display="flex">
             <Box width="84px" pr="20px">
@@ -260,7 +325,7 @@ const DataProcessingCleanService = ({ isAuth }) => {
                   color="messenger.500"
                   fontWeight="normal"
                   pl={0}
-                  onClick={displaySelection}
+                  onClick={() => displaySelection('dataclean')}
                 >
                   Clean Data
                 </Button>
@@ -275,26 +340,38 @@ const DataProcessingCleanService = ({ isAuth }) => {
                 </Button>*/}
                 <CustomModal
                         showModalButtonText="SAVE"
-                        modalBody={<ModalBody dataSet={datainformation} textClean={textCleaning}/>}
+                        modalBody={<ModalBody dataSet={datainformation} textClean={textCleaning} textTransformation={textTransformation} startPoint="dataclean"/>}
                         size="5xl"
                         buttonHandler="red.500"
                         colorScheme="white"
                         fontWeight="normal"
                         borderRadius={0}
                         border="0px"
-                        modalFooter={<ModalFooter closeModal={footerClose} textClean={textCleaning} finalWindowClose ={cleanIngDone}/>}
+                        modalFooter={<ModalFooter closeModal={footerClose} 
+                        textClean={textCleaning} 
+                        finalWindowClose ={cleanIngDone} 
+                        dataClean={dataCleanComplete} 
+                        dataTextClean={dataTextCleanUp} 
+                        goToTextTransform={openTextTransform} 
+                        textTransformation={textTransformation}
+                        onlyTextClean={onlyTextClean}
+                        onlyCleanText={onlyCleanText}
+                        onlyTextTransform={onlyTextTransform}
+                        cleanDataTextTexttransform ={cleanAllThree}
+                        cleanTextTextTransform={cleanTextTextTransform}
+                        onlyTextTransformClean={onlyTextTransformClean}/>}
                         showButton="false"
                         ref={modalRef}
                         modalCloseButton="true"
-                        modalHeader={<ModalHeader textClean={textCleaning}/>}
+                        modalHeader={<ModalHeader textClean={textCleaning} textTransformation={textTransformation}/>}
                       />
               </Box>
             </Box>
           </Box>
         </Box>
-        <Box mr={7} border="1px" borderColor="gray.500" borderRadius={5} p="27px" width="33.33%" boxShadow="xl" backgroundColor="white">
+        <Box mr={7} backgroundColor={finalCleanupDone || datatTextClean || cleanAllServices || highlightText || onlyTextTextTransform? 'green.50' : "white"} border="1px" borderColor="gray.500" borderRadius={5} p="27px" width="33.33%" boxShadow="xl">
           <Box display="flex" justifyContent="flex-end">
-            <CopyIcon boxSize={6} display="none"/>
+            <CheckCircleIcon color="green.500" boxSize={6} display={finalCleanupDone || datatTextClean || cleanAllServices || highlightText || onlyTextTextTransform? 'block' : "none"}/>
           </Box>
           <Box display="flex">
             <Box width="84px" pr="20px">
@@ -321,16 +398,44 @@ const DataProcessingCleanService = ({ isAuth }) => {
                   color="messenger.500"
                   fontWeight="normal"
                   pl={0}
+                  onClick={() => displaySelection('textclean')}
                 >
                   Clean Text
                 </Button>
+                <CustomModal
+                        showModalButtonText="SAVE"
+                        modalBody={<ModalBody dataSet={datainformation} textClean={textCleaning} startPoint="textclean" textTransformation={textTransformation} 
+                        />}
+                        size="5xl"
+                        buttonHandler="red.500"
+                        colorScheme="white"
+                        fontWeight="normal"
+                        borderRadius={0}
+                        border="0px"
+                        modalFooter={<ModalFooter closeModal={footerClose} 
+                        textClean={textCleaning} 
+                        finalWindowClose ={cleanIngDone} 
+                        dataClean={dataCleanComplete} 
+                        dataTextClean={dataTextCleanUp} 
+                        goToTextTransform={openTextTransform} 
+                        onlyTextTransform={onlyTextTransform}
+                        textTransformation={textTransformation}
+                        onlyCleanText={onlyCleanText}
+                        cleanDataTextTexttransform ={cleanAllThree} onlyTextClean={onlyTextClean}
+                        cleanTextTextTransform={cleanTextTextTransform}
+                        onlyTextTransformClean={onlyTextTransformClean}/>}
+                        showButton="false"
+                        ref={modalRef}
+                        modalCloseButton="true"
+                        modalHeader={<ModalHeader textClean={textCleaning} textTransformation={textTransformation}/>}
+                      />
               </Box>
             </Box>
           </Box>
         </Box>
-        <Box border="1px" borderColor="gray.500" borderRadius={5} p="27px" width="33.33%" boxShadow="xl" backgroundColor="white">
+        <Box backgroundColor={finalCleanupDone || cleanAllServices || onlyTextTextTransform || highlightTransform ? 'green.50' : "white"} border="1px" borderColor="gray.500" borderRadius={5} p="27px" width="33.33%" boxShadow="xl">
           <Box display="flex" justifyContent="flex-end">
-            <CopyIcon boxSize={6} display="none"/>
+            <CheckCircleIcon color="green.500" boxSize={6} display={finalCleanupDone || cleanAllServices || onlyTextTextTransform || highlightTransform ? 'block' : "none"}/>
           </Box>
           <Box display="flex">
             <Box width="84px" pr="20px">
@@ -357,9 +462,37 @@ const DataProcessingCleanService = ({ isAuth }) => {
                   color="messenger.500"
                   fontWeight="normal"
                   pl={0}
+                  onClick={() => displaySelection('texttransform')}
                 >
                   Text Transform
                 </Button>
+                <CustomModal
+                        showModalButtonText="SAVE"
+                        modalBody={<ModalBody startPoint="texttransform" dataSet={datainformation} textClean={textCleaning} textTransformation={textTransformation}/>}
+                        size="5xl"
+                        buttonHandler="red.500"
+                        colorScheme="white"
+                        fontWeight="normal"
+                        borderRadius={0}
+                        border="0px"
+                        modalFooter={<ModalFooter closeModal={footerClose} 
+                        textClean={textCleaning}
+                        onlyTextClean={onlyTextClean} 
+                        finalWindowClose ={cleanIngDone} 
+                        dataClean={dataCleanComplete} 
+                        dataTextClean={dataTextCleanUp} 
+                        goToTextTransform={openTextTransform} 
+                        textTransformation={textTransformation}
+                        onlyTextTransform={onlyTextTransform}
+                        cleanDataTextTexttransform ={cleanAllThree}
+                        onlyCleanText={onlyCleanText}
+                        cleanTextTextTransform={cleanTextTextTransform}
+                        onlyTextTransformClean={onlyTextTransformClean}/>}
+                        showButton="false"
+                        ref={modalRef}
+                        modalCloseButton="true"
+                        modalHeader={<ModalHeader textClean={textCleaning} textTransformation={textTransformation}/>}
+                      />
               </Box>
             </Box>
           </Box>

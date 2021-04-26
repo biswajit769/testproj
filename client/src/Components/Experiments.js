@@ -84,52 +84,68 @@ const Experiments = ({ experimentData }) => {
       });
   };
 
+  const createActionLink = (currentState) => {
+    let actionLink = '';
+    switch (currentState) {
+      case "da":
+        actionLink = "dataexplore";
+        break;
+      case "mb":
+        actionLink = "modelprediction";
+        break;
+    }
+    return actionLink;
+  }
+
   const loadTableContent = () => {
-    let rows = experimentData.map((experiment, i) => (
-      <Tr>
-        <Td fontSize="xs" width="12%">
-          {experiment.id}
-        </Td>
-        <Td fontSize="xs" width="10%">
-          {experiment.name}
-        </Td>
-        <Td fontSize="xs" width="8%">
-          {experiment.dataset}
-        </Td>
-        <Td fontSize="xs" width="18%">
-          {experiment.description}
-        </Td>
-        <Td fontSize="xs" width="12%">
-          {experiment.target}
-        </Td>
-        <Td fontSize="xs" width="10%">
-          {experiment.runtime}
-        </Td>
-        <Td fontSize="xs" width="19%">
-          {experiment.status}
-        </Td>
-        <Td width="1%">
-          <Icon as={FaFileAlt} color="linkedin.500" />
-        </Td>
-        <Td width="5%">
-        <Link to='/dataexplore'>
-          <Button
-            variant="solid"
-            size="sm"
-            borderRadius={0}
-            color="linkedin.500"
-            fontSize="sm"
-            border="1px"
-            fontWeight="normal"
-            borderColor="linkedin.500"
-            backgroundColor="twitter.50"
-          >
-            ACTION
-          </Button>
-          </Link>
-        </Td>
-      </Tr>
-    ));
+    let rows = experimentData.map((experiment, i) => {
+     let actionLink = `/${createActionLink(experiment.cstat)}`;
+      return (
+        <Tr>
+          <Td fontSize="xs" width="12%">
+            {experiment.id}
+          </Td>
+          <Td fontSize="xs" width="10%">
+            {experiment.name}
+          </Td>
+          <Td fontSize="xs" width="8%">
+            {experiment.dataset}
+          </Td>
+          <Td fontSize="xs" width="18%">
+            {experiment.description}
+          </Td>
+          <Td fontSize="xs" width="12%">
+            {experiment.target}
+          </Td>
+          <Td fontSize="xs" width="10%">
+            {experiment.runtime}
+          </Td>
+          <Td fontSize="xs" width="19%">
+            {experiment.status}
+          </Td>
+          <Td width="1%">
+            <Icon as={FaFileAlt} color="linkedin.500" />
+          </Td>
+          <Td width="5%">
+          <Link to={actionLink}>
+            <Button
+              variant="solid"
+              size="sm"
+              borderRadius={0}
+              color="linkedin.500"
+              fontSize="sm"
+              border="1px"
+              fontWeight="normal"
+              borderColor="linkedin.500"
+              backgroundColor="twitter.50"
+            >
+              ACTION
+            </Button>
+            </Link>
+          </Td>
+        </Tr>
+      )
+    });
     if (rows.length === 0) {
       return (
         <Tr w="600px" backgroundColor="red.300">

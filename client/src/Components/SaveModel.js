@@ -42,7 +42,7 @@ const SaveModel = ({ closeModal, data }) => {
         alignItems="center"
         mt="20px"
       >
-        <Link to="/modelprediction">
+        <Link to="/usecases">
           <Button
             variant="solid"
             size="lg"

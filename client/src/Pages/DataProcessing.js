@@ -93,7 +93,6 @@ const DataProcessing = ({ isAuth }) => {
     await axios
       .get("/getdatainformation")
       .then(function (fetchedDataInformation) {
-        console.log("get data information===", fetchedDataInformation);
         setDatainformation(fetchedDataInformation.data);
         setLoading(false);
       })
@@ -111,6 +110,7 @@ const DataProcessing = ({ isAuth }) => {
             <Text fontSize="3xl">Data Preprocessing</Text>
           </Box>
           <Box>
+            <Link to="/modelbuilding">
             <Button
               variant="solid"
               size="lg"
@@ -123,6 +123,7 @@ const DataProcessing = ({ isAuth }) => {
             >
               PROCEED MODEL BUILDING
             </Button>
+            </Link>
           </Box>
         </Flex>
         <Box border="1px" borderColor="gray.500" pb={5}>

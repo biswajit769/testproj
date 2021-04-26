@@ -158,7 +158,6 @@ const ModelBuilding = ({ isAuth }) => {
     await axios
       .get("/experimenttargetcolumn")
       .then(function (fetchedDataInformation) {
-        //console.log("get data information===", fetchedDataInformation);
         setDatainformation(fetchedDataInformation.data);
         setLoading(false);
       })
