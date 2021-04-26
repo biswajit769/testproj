@@ -25,6 +25,8 @@ import DataProcessing from './Pages/DataProcessing';
 import DataProcessingCleanService from './Pages/DataProcessingCleanService';
 import ModelBuilding from './Pages/ModelBuilding';
 import ModelPrediction from './Pages/ModelPrediction';
+import ModelInterpretation from './Pages/ModelInterpretation';
+import ModelDeployment from './Pages/ModelDeployment';
 
 const theme = {
   ...defaultTheme,
@@ -62,6 +64,8 @@ function App() {
             <Route exact path='/dataprocessing' component={DataProcessing} />
             <Route exact path='/modelbuilding' component={ModelBuilding} />
             <Route exact path='/modelprediction' component={ModelPrediction} />
+            <Route exact path='/modeldeployment' component={ModelDeployment} />
+            <Route exact path='/modelinterpretation' component={ModelInterpretation} />
             <Route exact path='/datacleanservice' component={DataProcessingCleanService} />
             <Route exact path='/authors/add' component={AuthorEditOrAddPage} />
             <Route

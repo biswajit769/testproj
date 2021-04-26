@@ -29,6 +29,7 @@ import { AddIcon, RepeatIcon, CloseIcon } from "@chakra-ui/icons";
 import { delay } from "../Utils/utils";
 import moment from "moment";
 import axios from "../__mocks__/axios";
+import { Link } from "react-router-dom";
 
 const Experiments = ({ experimentData }) => {
   //console.log("experiment data====", experimentData);
@@ -111,6 +112,7 @@ const Experiments = ({ experimentData }) => {
           <Icon as={FaFileAlt} color="linkedin.500" />
         </Td>
         <Td width="5%">
+        <Link to='/dataexplore'>
           <Button
             variant="solid"
             size="sm"
@@ -124,6 +126,7 @@ const Experiments = ({ experimentData }) => {
           >
             ACTION
           </Button>
+          </Link>
         </Td>
       </Tr>
     ));

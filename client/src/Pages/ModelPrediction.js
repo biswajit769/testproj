@@ -125,6 +125,7 @@ const ModelPrediction = ({ isAuth }) => {
             <Text fontSize="3xl">Prediction</Text>
           </Box>
           <Box>
+          <Link to='/modelinterpretation'>
             <Button
               variant="solid"
               size="lg"
@@ -137,6 +138,7 @@ const ModelPrediction = ({ isAuth }) => {
             >
               MODEL INTERPRETATION
             </Button>
+            </Link>
           </Box>
         </Flex>
         <Box border="1px" borderColor="gray.500" pb={5} borderTop={0}>
